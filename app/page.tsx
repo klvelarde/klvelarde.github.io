@@ -101,13 +101,28 @@ export default function Home() {
 
       if (lastSectionId && lastSectionId != null && lastSectionId !== tabActive) setTabActive(lastSectionId);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        setIconSrc('/cat-front.webp');
+      } else {
+        setIconSrc('/cat-back.webp');
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener("scroll", handleScroll)
+    };
   }, [])
+
+  const [iconSrc, setIconSrc] = useState('/cat-front.webp');
 
   return (
     <main className="m-[20px]">
+      <link rel="icon" href={iconSrc} sizes="any" />
       <header className="fixed right-0 w-full z-10 flex justify-center">
         <Navtab items={TABS} tabActive={tabActive} setTabActive={setTabActive} customClass={`${highlightMenu ? "bg-black/70" : "bg-transparent"}`}/>
       </header>
@@ -133,7 +148,7 @@ export default function Home() {
                 <path d="M12.5 3H3.75C3.06062 3 2.5 3.56062 2.5 4.25V7.375H3.75V5.5L7.75 8.5C7.85823 8.58104 7.98979 8.62484 8.125 8.62484C8.26021 8.62484 8.39177 8.58104 8.5 8.5L12.5 5.5V11.125H7.5V12.375H12.5C13.1894 12.375 13.75 11.8144 13.75 11.125V4.25C13.75 3.56062 13.1894 3 12.5 3ZM8.125 7.21875L4.16625 4.25H12.0837L8.125 7.21875Z" fill="currentColor"/>
                 <path d="M1.25 8H5.625V9.25H1.25V8ZM2.5 9.875H6.25V11.125H2.5V9.875ZM4.375 11.75H6.875V13H4.375V11.75Z" fill="currentColor"/>
               </svg>
-              Contactame
+              Contáctame
             </Button>
           </div>
         </section>
@@ -148,7 +163,7 @@ export default function Home() {
               mantenimiento de ecommerces, también trabajo con backend como creación de <Typography tag="span" variant="important">APIs</Typography> y desarrollo de proyectos con <Typography tag="span" variant="important">Odoo</Typography>, entre otros.
             </ExperienceBox>
             <ExperienceBox title="Programadora senior" company="CONFLUX SRL" year="2022">
-              Responsable de proyectos de desarrollo en <Typography tag="span" variant="important">Odoo</Typography>, incluyendo el mantenimiento de código, refactorización y creación de scripts de automatización.
+              Responsable de proyectos de desarrollo en <Typography tag="span" variant="important">Odoo</Typography>, incluyendo el mantenimiento de código, refactorización y creación de scripts de automatización utilizando <Typography tag="span" variant="important">NodeJS</Typography> y <Typography tag="span" variant="important">MongoDB</Typography>.
             </ExperienceBox>
             <ExperienceBox title="Programadora junior" company="HOLA CALIDAD - Startup" year="2020">
               Desarrollo del proyecto presentado como startup "Hola Calidad". Se desarrollaron aplicaciones en <Typography tag="span" variant="important">Odoo</Typography> integradas para cumplir con el estándar ISO 9001. El proyecto obtuvo la aceptación de SGS e INACAL (Instituto Nacional de Calidad).
