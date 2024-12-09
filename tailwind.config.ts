@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        urbanist: ['Urbanist', 'sans-serif'],
-        slackside: ['Slackside One', 'sans-serif'],
+        urbanist: ["Urbanist", "sans-serif"],
+        slackside: ["Slackside One", "sans-serif"],
       },
       colors: {
-        'white': '#F4F3EE',
-        'camelia': '#F28482',
-        'rose': '#F5CAC3',
-        'retama': '#F6BD60',
-        'suculenta': '#84A59D',
+        white: "#F4F3EE",
+        camelia: "#F28482",
+        rose: "#F5CAC3",
+        retama: "#F6BD60",
+        suculenta: "#84A59D",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
